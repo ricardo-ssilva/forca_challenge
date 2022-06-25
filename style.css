@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+:root {
+    --main-gradient-color: #6de4de;
+    --sec-gradient-color: #ffeee4;
+    --third-gradient-color: #9ec1df;    
+}
+body {
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(to top right, var(--main-gradient-color), var(--third-gradient-color), var(--sec-gradient-color));
+}
+h1 {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+menu {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.2s;
+}
+menu > button {
+    padding: 5px;
+    width: 450px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 50px;
+    font-size: 25px;
+    font-family: sans-serif;
+    border: none;
+    background-color: rgba(255,255,255,0.65);
+    cursor: pointer;
+    box-shadow: 1px 1px 2px rgb(58 58 58 / 43%);
+    transition: all ease 0.15s;
+}
+menu > button:first-child {
+    font-size: 35px;
+}
+
+menu > button:hover {
+    background-color: rgba(255,255,255,1);
+    box-shadow: 1px 1px 2px rgba(104, 104, 104, 0.384);
+    transform: scale(1.15);
+}
+
+
+main {
+    display: none;
+    background-color: blue;
+    opacity: 0;
+    height: 100vh;
+    width: 100%;
+    transition: all ease 0.5s;
+}
+
+
+
+footer span {
+    margin: 2.5px;
+}
+.page-info {
+    padding: 10px;
+    width: 100%;
+    background-color: #9ec1df;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 19px;
+}
+.page-info a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
