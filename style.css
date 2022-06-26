@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    font-family: sans-serif;
 }
 :root {
     --main-gradient-color: #6de4de;
@@ -14,13 +15,20 @@ body {
     background-image: linear-gradient(to top right, var(--main-gradient-color), var(--third-gradient-color), var(--sec-gradient-color));
 }
 h1 {
+    opacity: 0.9;
     position: absolute;
     top: 40px;
     left: 40px;
+    transition: all ease 0.2s;
+}
+h1:hover {
+    transform: scale(1.15);
+    opacity: 1;
 }
 menu {
     width: 100%;
     height: 100vh;
+    /* display: none; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,14 +61,55 @@ menu > button:hover {
 
 
 main {
+    /* display: flex; */
     display: none;
-    background-color: blue;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
+    /* opacity: 1; */
     height: 100vh;
     width: 100%;
     transition: all ease 0.5s;
 }
-
+.add-words {
+    display: none;
+    opacity: 0;
+    height: 100vh;
+    width: 100%;
+    transition: all ease 0.2s;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+}
+.add-words input, .add-words button {
+    font-size: 20px;
+    text-align: center;
+    width: 550px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    margin: 10px;
+    box-shadow: 2px 2px 2px  rgba(0, 0, 0, 0.233);
+}
+.add-words button {
+    background-color: var(--sec-gradient-color);
+    font-weight: bold;
+    opacity: 0.8;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px rgb(58 58 58 / 43%);
+    transition: all ease 0.15s;
+}
+.add-words button:hover {
+    opacity: 1;
+    background-color: var(--sec-gradient-color);
+    box-shadow: 1px 1px 2px rgba(104, 104, 104, 0.384);
+    transform: scale(1.15);
+}
+.add-words input::placeholder {
+    font-size: 20px;
+}
 
 
 footer span {
