@@ -5,16 +5,29 @@ let addWordBtn = btn[1]
 
 
 let words = ['ALURA', 'ORACLE', 'HTML', 'JAVASCRIPT', 'CSS']
+let tips = ['CURSO', 'MARCA', 'MARCAÇAO', 'PROGRAMAÇAO', 'ESTILO']
+let tip = ' '
 
 var letras = [];
 var palavraCorreta = "";
 var erros = 6;
 
+function chooseRamdonWords(){
+    let randomizer = Math.floor(Math.random() * words.length)
+    let word = words[randomizer]
+    tip = tips[randomizer]
+    console.log(word, tip)
+    secretWord = word
+
+    return word
+}
 
 
+
+// Canvas
 let board = document.getElementById('forca').getContext('2d')
 // board.fillStyle = 'lightgrey'
-// board.fillRect(0, 0, 1200, 860);
+// board.fillRect(0, 0, 1600, 860);
 
 
 
@@ -22,11 +35,7 @@ playBtn.onclick = playGame
 addWordBtn.onclick = addWord
 
 //Escolher palavras aleatórias
-function chooseRamdonWords(){
-    let word = words[Math.floor(Math.random() * words.length)]
-    secretWord = word
-    return word
-}
+
 function drawUnderline(){
     board.lineWidth = 6
     board.lineCap = "round"
@@ -40,11 +49,47 @@ function drawUnderline(){
     }
     board.stroke()
     board.closePath()
-    console.log('opa')
+   
 }
 drawUnderline(chooseRamdonWords())
 
+function addTips() {
+    board.font = 'bold 30px Arial'
+    
+    board.fillText(`DICA: ${tip}` , 390, 50, tip.length * 40)
+} addTips()
 
+function drawHang() {
+    var tela = document.querySelector('canvas')
+    var pincel = tela.getContext('2d')
+
+    board.lineWidth = 6
+    board.lineCap = "round"
+    board.lineJoin = "round"
+    board.strokeStyle = "#0A3871"
+
+ // Base
+    // board.moveTo(400, 400)
+    // board.lineTo(400, 400)
+    // board.moveTo(320, 400)
+    // board.lineTo(480, 400)
+
+ // Coluna
+    board.moveTo(400, 400)
+    board.lineTo(400, 100)
+
+ // Topo
+    board.moveTo(400, 100)
+    board.lineTo(550, 100)
+
+
+    board.moveTo(550, 100)
+    board.lineTo(550, 140)
+
+    board.stroke()
+    board.closePath()
+}
+drawHang() 
 
 function playGame() {
    let mainDisplay = document.querySelector('main')
