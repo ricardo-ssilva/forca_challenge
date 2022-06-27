@@ -42,11 +42,16 @@ function drawUnderline(){
     board.lineJoin = "round"
     board.strokeStyle = "#0A3871"
     board.beginPath()
-    var eixo = 600 / secretWord.length
+
     for(let i = 0; i < secretWord.length; i++){
-        board.moveTo(300+(eixo*i), 540)
-        board.lineTo(350+(eixo*i), 540)
+        board.moveTo(300 + i * 60, 540)
+        board.lineTo(350 + i * 60, 540)
     }
+
+
+
+    // board.moveTo(360, 540)
+    // board.lineTo(410, 540)
     board.stroke()
     board.closePath()
    
@@ -54,8 +59,8 @@ function drawUnderline(){
 drawUnderline(chooseRamdonWords())
 
 function addTips() {
+    board.fillStyle = '#0A3871'
     board.font = 'bold 30px Arial'
-    
     board.fillText(`DICA: ${tip}` , 390, 50, tip.length * 40)
 } addTips()
 

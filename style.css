@@ -61,6 +61,7 @@ menu > button:hover {
 
 
 main {
+    
     display: flex;
     /* display: none; */
     justify-content: center;
