@@ -5,8 +5,9 @@ let addWordBtn = btn[1]
 
 
 let words = ['ALURA', 'ORACLE', 'HTML', 'JAVASCRIPT', 'CSS']
-let tips = ['CURSO', 'MARCA', 'MARCAÇAO', 'PROGRAMAÇAO', 'ESTILO']
+let tips = ['PLATAFORMA', 'MARCA', 'MARCAÇAO', 'PROGRAMAÇAO', 'ESTILO']
 let tip = ' '
+let keys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
 var letras = [];
 var palavraCorreta = "";
@@ -18,7 +19,6 @@ function chooseRamdonWords(){
     tip = tips[randomizer]
     console.log(word, tip)
     secretWord = word
-
     return word
 }
 
@@ -65,9 +65,6 @@ function addTips() {
 } addTips()
 
 function drawHang() {
-    var tela = document.querySelector('canvas')
-    var pincel = tela.getContext('2d')
-
     board.lineWidth = 6
     board.lineCap = "round"
     board.lineJoin = "round"
@@ -108,7 +105,6 @@ function playGame() {
         mainDisplay.style.opacity = '1'
     }, 300)
 
-
     //ChooseRamdonWords
 }
 
@@ -126,3 +122,53 @@ function addWord() {
         addWordsDisplay.style.opacity = '1'
      }, 300)
 }
+
+
+
+//Veriificar letras
+document.onkeydown = (e) => {
+    let char = e.key.toLocaleUpperCase()
+    // console.log(e)
+    for(let i = 0; i <= keys.length; i++){
+        if(char == keys[i]){
+          
+            checkCorrectLetter(char)
+        
+        }
+    
+        
+    }
+}
+
+function addRightLetter(i){
+    board.fillStyle = '#0A3871'
+    board.font = 'bold 40px Arial'
+    board.fillText(`${secretWord[i]}` , 310 + i * 60 , 530, secretWord.length * 40)
+    // board.fillText(`${secretWord[1]}` , 310 + 1 * 60 , 540, secretWord.length * 40)
+    // board.fillText(`${secretWord[2]}` , 310 + 2 * 60 , 540, secretWord.length * 40)
+    // board.moveTo(300 + i * 60, 540)
+    // board.lineTo(350 + i * 60, 540)
+} addRightLetter(i)
+
+
+function checkCorrectLetter(char){
+    if(secretWord.includes(char)){
+
+        let indexX = []
+        let idx = secretWord.indexOf(char)
+        while(idx != -1) {
+            indexX.push(idx)
+            idx = secretWord.indexOf(char, idx + 1)
+        }
+        console.log(indexX)
+        
+        // console.log(secretWord.indexOf(char))
+        for(let i = 0 ; i <= indexX.length; i++){
+            addRightLetter(indexX[i])
+        }
+    
+        
+    }
+    
+}
+
