@@ -52,7 +52,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
  // Canvas
     let board = document.getElementById('forca').getContext('2d')
     // board.fillStyle = 'lightgrey'
-    // board.fillRect(0, 0, 1600, 860);
+    // board.fillRect(0, 0, 1200, 700);
 
     function drawUnderline(){
         board.lineWidth = 6
@@ -60,8 +60,6 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.lineJoin = "round"
         board.strokeStyle = "#0A3871"
         board.beginPath()
-        
-
         for(let i = 0; i < secretWord.length; i++){
             board.moveTo(300 + i * 60, 540)
             board.lineTo(350 + i * 60, 540)
@@ -69,13 +67,13 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.stroke()
         board.closePath()
     }
-    drawUnderline(chooseRamdonWords())
+    
 
     function addTips() {
         board.fillStyle = '#0A3871'
         board.font = 'bold 30px Arial'
         board.fillText(`DICA: ${tip}` , 390, 50, tip.length * 40)
-    } addTips()
+    }
 
 
     function drawHang() {
@@ -105,10 +103,9 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.stroke()
         board.closePath()
     }
-    drawHang() 
+   
 
     function addRightLetter(indexOfChar){
-       
         board.fillStyle = '#0A3871'
         board.font = 'bold 40px Arial'
         board.fillText(`${secretWord[indexOfChar]}` , 310 + indexOfChar * 60 , 530, secretWord.length * 40)
@@ -148,7 +145,9 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
                 mainDisplay.style.opacity = '1'
             }, 300)
 
-            //ChooseRamdonWords
+            drawUnderline(chooseRamdonWords())
+            addTips()
+            drawHang() 
     }
 
 
@@ -195,14 +194,14 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         } else {
             addWrongLetter(char)
         }
+            //Add the correct letters to an array and compare with the array of the original word
             console.log('check1',check)
-            let array = check.join('')
-            console.log(array)
-            if(array == secretWord) {
+            let arrayCheck = check.join('')
+            console.log(arrayCheck)
+            if(arrayCheck == secretWord) {
             setTimeout(() => {
                 alert('Você venceu') 
             }, 500);
-                
             }
     }
 
@@ -220,7 +219,11 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
    
     }
 
-
+    function gameOver() {
+        board.clearRect(0, 0, 1200, 700);
+        includeLetter = []
+        letterSpace = 0
+    }
 
 
 
