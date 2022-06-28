@@ -4,14 +4,17 @@ let playBtn = btn[0]
 let addWordBtn = btn[1]
 
 
-let words = ['ALURA', 'ORACLE', 'HTML', 'JAVASCRIPT', 'CSS']
-let tips = ['PLATAFORMA', 'MARCA', 'MARCAÇAO', 'PROGRAMAÇAO', 'ESTILO']
+let words = ['ALURA', 'ORACLE', 'HTML', 'JAVASCRIPT', 'CSS', 'CURSOS', 'DESENVOLVER']
+let tips = ['PLATAFORMA DE CURSOS', 'EMPRESA DE TECNOLOGIA', 'LINGUAGEM DE MARCAÇAO', 'LINGUAGEM DE PROGRAMAÇAO', 'LINGUAGEM DE ESTILO', 'OFERECIDO PELA ALURA', 'CAPACIDADE DE CRIAR E EVOLUIR']
 let tip = ' '
 let keys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
-var letras = [];
-var palavraCorreta = "";
-var erros = 6;
+// var letras = [];
+// var palavraCorreta = "";
+// var erros = 6;
+// let acertos = 0
+
+let looseCount = 0
 
 function chooseRamdonWords(){
     let randomizer = Math.floor(Math.random() * words.length)
@@ -140,35 +143,67 @@ document.onkeydown = (e) => {
     }
 }
 
-function addRightLetter(i){
-    board.fillStyle = '#0A3871'
-    board.font = 'bold 40px Arial'
-    board.fillText(`${secretWord[i]}` , 310 + i * 60 , 530, secretWord.length * 40)
-    // board.fillText(`${secretWord[1]}` , 310 + 1 * 60 , 540, secretWord.length * 40)
-    // board.fillText(`${secretWord[2]}` , 310 + 2 * 60 , 540, secretWord.length * 40)
-    // board.moveTo(300 + i * 60, 540)
-    // board.lineTo(350 + i * 60, 540)
-} addRightLetter(i)
 
+
+let letterSpace = 0
 
 function checkCorrectLetter(char){
     if(secretWord.includes(char)){
 
-        let indexX = []
+        let indexOfChar = []
         let idx = secretWord.indexOf(char)
         while(idx != -1) {
-            indexX.push(idx)
+            indexOfChar.push(idx)
             idx = secretWord.indexOf(char, idx + 1)
         }
-        console.log(indexX)
+        console.log(indexOfChar)
         
         // console.log(secretWord.indexOf(char))
-        for(let i = 0 ; i <= indexX.length; i++){
-            addRightLetter(indexX[i])
+        for(let i = 0 ; i <= indexOfChar.length; i++){
+            addRightLetter(indexOfChar[i])
         }
-    
-        
+        // acertos++
+        // console.log(acertos)
+    } else {
+        addWrongLetter(char)
     }
-    
+       
+
+        // if(char.match(padrão)){
+        //     console.log(char);
+        //     return true; 
+  
+        // }
 }
 
+function addRightLetter(indexOfChar){
+    board.fillStyle = '#0A3871'
+    board.font = 'bold 40px Arial'
+    board.fillText(`${secretWord[indexOfChar]}` , 310 + indexOfChar * 60 , 530, secretWord.length * 40)
+    // board.fillText(`${secretWord[1]}` , 310 + 1 * 60 , 540, secretWord.length * 40)
+    // board.fillText(`${secretWord[2]}` , 310 + 2 * 60 , 540, secretWord.length * 40)
+    // board.moveTo(300 + i * 60, 540)
+    // board.lineTo(350 + i * 60, 540)
+} 
+// addRightLetter(i)
+let includeLetter = []
+
+function addWrongLetter(char) {
+    if(!includeLetter.includes(char)){
+  
+        if(letterSpace <= 6){
+            includeLetter.push(char)
+            console.log(includeLetter)
+            letterSpace++
+            console.log(letterSpace)
+            board.fillStyle = '#0A3871'
+            board.font = 'bold 40px Arial'
+            board.fillText( char, 310 + letterSpace * 60 , 640, secretWord.length * 40)
+
+            looseCount = letterSpace
+           if(looseCount > 6 ){
+                alert('Você Perdeu')
+           }
+        }
+    }
+}
