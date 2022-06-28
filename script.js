@@ -135,7 +135,7 @@ document.onkeydown = (e) => {
     for(let i = 0; i <= keys.length; i++){
         if(char == keys[i]){
           
-            checkCorrectLetter(char)
+            checkLetter(char)
         
         }
     
@@ -146,8 +146,9 @@ document.onkeydown = (e) => {
 
 
 let letterSpace = 0
+let check = []
 
-function checkCorrectLetter(char){
+function checkLetter(char){
     if(secretWord.includes(char)){
 
         let indexOfChar = []
@@ -156,11 +157,16 @@ function checkCorrectLetter(char){
             indexOfChar.push(idx)
             idx = secretWord.indexOf(char, idx + 1)
         }
-        console.log(indexOfChar)
-        
+
+      
+
+       
+    
         // console.log(secretWord.indexOf(char))
         for(let i = 0 ; i <= indexOfChar.length; i++){
             addRightLetter(indexOfChar[i])
+            check [indexOfChar [i] ] = char
+            
         }
         // acertos++
         // console.log(acertos)
@@ -174,7 +180,17 @@ function checkCorrectLetter(char){
         //     return true; 
   
         // }
+        console.log('check1',check)
+        let array = check.join('')
+        console.log(array)
+        if(array == secretWord) {
+          setTimeout(() => {
+            alert('Você venceu') 
+          }, 500);
+            
+        }
 }
+
 
 function addRightLetter(indexOfChar){
     board.fillStyle = '#0A3871'
