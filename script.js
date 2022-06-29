@@ -124,12 +124,83 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
                 board.fillText( char, 310 + letterSpace * 60 , 640, secretWord.length * 40)
     
                 looseCount = letterSpace
-               if(looseCount > 6 ){
-                    alert('Você Perdeu')
-               }
+            //    if(looseCount > 6 ){
+            //         alert('Você Perdeu')
+            //    }
+            switch(looseCount){
+                case 1:
+                    drawHangManHead();
+                    break;
+                 case 2: 
+                     drawHangManBody();
+                     break;
+                 case 3:
+                     drawHangManLftArm();
+                     break;
+                 case 4: 
+                     drawHangManRgtArm();
+                     break;
+                 case 5: 
+                     drawHangManLftLeg();
+                     break;
+                 case 6: 
+                     drawHangManRgtLeg();
+                     setTimeout(() => {
+                        alert('Você perdeu')
+                        //  gameOver();
+                     }, 400);
+                     break;
+                
+            }
             }
         }
     }
+
+    function drawHangManHead() {
+   
+    
+        board.beginPath();
+        board.arc(550, 140, 22, 0, 2*3.14);
+        board.fill();
+    }
+    function drawHangManBody() {
+   
+        board.fillStyle = '#0A3871'
+        board.fillRect(548, 140, 7 , 110 )
+    }
+    function drawHangManLftArm(){
+   
+        board.fillStyle = '#0A3871'
+        board.beginPath()
+        board.moveTo(553, 180);
+        board.lineTo(585, 220);
+        board.stroke()
+    }
+    function drawHangManRgtArm(){
+   
+        board.fillStyle = '#0A3871'
+        board.beginPath()
+        board.moveTo(550, 180);
+        board.lineTo(521, 220);
+        board.stroke()
+    }
+    function drawHangManLftLeg(){
+   
+        board.fillStyle = '#0A3871'
+        board.beginPath()
+        board.moveTo(553, 250);
+        board.lineTo(585, 290);
+        board.stroke()
+    }
+    function drawHangManRgtLeg(){
+   
+        board.fillStyle = '#0A3871'
+        board.beginPath()
+        board.moveTo(550, 250);
+        board.lineTo(521, 290);
+        board.stroke()
+    }
+    
 
 
 //Game Functions
