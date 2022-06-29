@@ -25,6 +25,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     addWordMenuBtn.onclick = addWordMenu
     sendBtn.onclick = addWords
     returnBtn.onclick = returnMenu
+    resetBtn.onclick = resetGame
     
 
   
@@ -157,7 +158,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
                  case 6: 
                      drawHangManRgtLeg();
                      setTimeout(() => {
-                        alert('Você perdeu')
+                  
                          gameOver(false);
                      }, 400);
                      break;
@@ -230,6 +231,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             drawUnderline(chooseRamdonWords())
             addTips()
             drawHang() 
+            resetBtn.style.display = 'none'
     }
 
 
@@ -284,7 +286,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             console.log(arrayCheck)
             if(arrayCheck == secretWord) {
             setTimeout(() => {
-                alert('Você venceu') 
+                // alert('Você venceu') 
                 gameOver(true)
             }, 500);
             }
@@ -318,6 +320,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             addloseMsg()
         }
         checkValue = true
+        resetBtn.style.display = 'block'
         
     }
 
@@ -337,5 +340,13 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
 
 
 
+    function resetGame() {
+       
+        board.clearRect(0, 0, 1200, 700);
+        includeLetter = []
+        letterSpace = 0
 
+        playGame()
+
+    }
   
