@@ -2,11 +2,13 @@
 const btn = document.querySelectorAll('button')
 const playBtn = btn[0]
 const addWordMenuBtn = btn[1]
-const sendBtn = btn[2]
-const returnBtn = btn[3]
+const resetBtn = btn[2]
+const sendBtn = btn[3]
+const returnBtn = btn[4]
 
 
-let looseCount = 0
+
+let loseCount = 0
 let words = ['ALURA', 'ORACLE', 'HTML', 'JAVASCRIPT', 'CSS', 'CURSOS', 'DESENVOLVER']
 let tips = ['PLATAFORMA DE CURSOS', 'EMPRESA DE TECNOLOGIA', 'LINGUAGEM DE MARCAÇAO', 'LINGUAGEM DE PROGRAMAÇAO', 'LINGUAGEM DE ESTILO', 'OFERECIDO PELA ALURA', 'CAPACIDADE DE CRIAR E EVOLUIR']
 let tip = ' '
@@ -21,7 +23,10 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     addWordMenuBtn.onclick = addWordMenu
     sendBtn.onclick = addWords
     returnBtn.onclick = returnMenu
-        //Veriificar letras
+    
+
+  
+    //Veriificar letras
     document.onkeydown = (e) => {
         let char = e.key.toLocaleUpperCase()
         // console.log(e)
@@ -123,11 +128,11 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
                 board.font = 'bold 30px Arial'
                 board.fillText( char, 310 + letterSpace * 60 , 640, secretWord.length * 40)
     
-                looseCount = letterSpace
-            //    if(looseCount > 6 ){
+                loseCount = letterSpace
+            //    if(loseCount > 6 ){
             //         alert('Você Perdeu')
             //    }
-            switch(looseCount){
+            switch(loseCount){
                 case 1:
                     drawHangManHead();
                     break;
@@ -147,7 +152,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
                      drawHangManRgtLeg();
                      setTimeout(() => {
                         alert('Você perdeu')
-                        //  gameOver();
+                         gameOver(false);
                      }, 400);
                      break;
                 
@@ -272,6 +277,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             if(arrayCheck == secretWord) {
             setTimeout(() => {
                 alert('Você venceu') 
+                gameOver(true)
             }, 500);
             }
     }
@@ -290,10 +296,44 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
    
     }
 
-    function gameOver() {
+    function gameOver(win) {
         board.clearRect(0, 0, 1200, 700);
         includeLetter = []
         letterSpace = 0
+        won = win
+    
+        if( win == true){
+            addWinMsg()
+        } else {
+            addloseMsg()
+        }
+    }
+
+    function resetGame() {
+        board.clearRect(0, 0, 1200, 700);
+        includeLetter = []
+        letterSpace = 0
+        setTimeout(()=>{
+            playGame()
+        },500)
+    }
+    
+    function addWinMsg() {
+
+
+        board.fillStyle = '#0A3871'
+        board.font = 'bold 40px Arial'
+        board.fillText(`PARABÉNS, VOCÊ VENCEU!` , 300, 350, tip.length * 40)
+
+    
+    }
+    function addloseMsg() {
+        board.fillStyle = '#0A3871'
+        board.font = 'bold 40px Arial'
+        board.fillText(`VOCE PERDEU!` , 450, 350, tip.length * 40)
+    
+      
+      
     }
 
 
