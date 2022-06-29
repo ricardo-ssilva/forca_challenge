@@ -7,6 +7,8 @@ const sendBtn = btn[3]
 const returnBtn = btn[4]
 
 
+let checkValue = false
+
 
 let loseCount = 0
 let words = ['ALURA', 'ORACLE', 'HTML', 'JAVASCRIPT', 'CSS', 'CURSOS', 'DESENVOLVER']
@@ -27,18 +29,22 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
 
   
     //Veriificar letras
+ 
     document.onkeydown = (e) => {
         let char = e.key.toLocaleUpperCase()
         // console.log(e)
-        for(let i = 0; i <= keys.length; i++){
-            if(char == keys[i]){
+        if(checkValue == false) {
+            for(let i = 0; i <= keys.length; i++){
+                if(char == keys[i]){
+                
+                    checkLetter(char)
+                
+                }
             
-                checkLetter(char)
-            
+                
             }
-        
-            
         }
+       
     }
 //Funções:
  //Escolher palavras aleatórias
@@ -212,7 +218,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     function playGame() {
         let mainDisplay = document.querySelector('main')
         let menuDisplay= document.querySelector('menu')
-
+        checkValue = false
         //Fecha menu e inicia o jogo:
         menuDisplay.style.opacity = '0'
         mainDisplay.style.display = 'flex'
@@ -255,6 +261,8 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
    
 
     function checkLetter(char){
+
+        
         if(secretWord.includes(char)){
             let indexOfChar = []
             let idx = secretWord.indexOf(char)
@@ -285,6 +293,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     function returnMenu () {
         let addWordsDisplay = document.querySelector('.add-words')
         let menuDisplay = document.querySelector('menu')
+        
 
         addWordsDisplay.style.opacity = 0
         menuDisplay.style.display = 'flex'
@@ -301,26 +310,19 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         includeLetter = []
         letterSpace = 0
         won = win
-    
+      
         if( win == true){
             addWinMsg()
+    
         } else {
             addloseMsg()
         }
+        checkValue = true
+        
     }
 
-    function resetGame() {
-        board.clearRect(0, 0, 1200, 700);
-        includeLetter = []
-        letterSpace = 0
-        setTimeout(()=>{
-            playGame()
-        },500)
-    }
     
     function addWinMsg() {
-
-
         board.fillStyle = '#0A3871'
         board.font = 'bold 40px Arial'
         board.fillText(`PARABÉNS, VOCÊ VENCEU!` , 300, 350, tip.length * 40)
@@ -330,12 +332,10 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     function addloseMsg() {
         board.fillStyle = '#0A3871'
         board.font = 'bold 40px Arial'
-        board.fillText(`VOCE PERDEU!` , 450, 350, tip.length * 40)
-    
-      
-      
+        board.fillText(`VOCE PERDEU!` , 450, 350, tip.length * 40)    
     }
 
 
 
 
+  
