@@ -5,10 +5,7 @@ const addWordMenuBtn = btn[1]
 const resetBtn = btn[2]
 const sendBtn = btn[3]
 const returnBtn = btn[4]
-
-
 let checkValue = false
-
 
 let loseCount = 0
 let words = ['ALURA', 'ORACLE', 'HTML', 'JAVASCRIPT', 'CSS', 'CURSOS', 'DESENVOLVER']
@@ -26,14 +23,11 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     sendBtn.onclick = addWords
     returnBtn.onclick = returnMenu
     resetBtn.onclick = resetGame
-    
 
-  
     //Veriificar letras
- 
     document.onkeydown = (e) => {
         let char = e.key.toLocaleUpperCase()
-        // console.log(e)
+
         if(checkValue == false) {
             for(let i = 0; i <= keys.length; i++){
                 if(char == keys[i]){
@@ -49,22 +43,16 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     }
 //Funções:
  //Escolher palavras aleatórias
-
     function chooseRamdonWords(){
         let randomizer = Math.floor(Math.random() * words.length)
         let word = words[randomizer]
         tip = tips[randomizer]
-        console.log(word, tip)
+
         secretWord = word
         return word
     }
-
-
-
  // Canvas
     let board = document.getElementById('forca').getContext('2d')
-    // board.fillStyle = 'lightgrey'
-    // board.fillRect(0, 0, 1200, 700);
 
     function drawUnderline(){
         board.lineWidth = 6
@@ -79,27 +67,16 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.stroke()
         board.closePath()
     }
-    
-
     function addTips() {
         board.fillStyle = '#0A3871'
         board.font = 'bold 30px Arial'
         board.fillText(`DICA: ${tip}` , 390, 50, tip.length * 40)
     }
-
-
     function drawHang() {
         board.lineWidth = 6
         board.lineCap = "round"
         board.lineJoin = "round"
         board.strokeStyle = "#0A3871"
-
-    // Base
-        // board.moveTo(400, 400)
-        // board.lineTo(400, 400)
-        // board.moveTo(320, 400)
-        // board.lineTo(480, 400)
-
     // Coluna
         board.moveTo(400, 400)
         board.lineTo(400, 100)
@@ -107,38 +84,26 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
     // Topo
         board.moveTo(400, 100)
         board.lineTo(550, 100)
-
-
         board.moveTo(550, 100)
         board.lineTo(550, 140)
-
         board.stroke()
         board.closePath()
     }
-   
-
     function addRightLetter(indexOfChar){
         board.fillStyle = '#0A3871'
         board.font = 'bold 40px Arial'
         board.fillText(`${secretWord[indexOfChar]}` , 310 + indexOfChar * 60 , 530, secretWord.length * 40)
     } 
-
     function addWrongLetter(char) {
         if(!includeLetter.includes(char)){
       
             if(letterSpace <= 6){
                 includeLetter.push(char)
-                console.log(includeLetter)
                 letterSpace++
-                console.log(letterSpace)
                 board.fillStyle = '#0A3871'
                 board.font = 'bold 30px Arial'
                 board.fillText( char, 310 + letterSpace * 60 , 640, secretWord.length * 40)
-    
                 loseCount = letterSpace
-            //    if(loseCount > 6 ){
-            //         alert('Você Perdeu')
-            //    }
             switch(loseCount){
                 case 1:
                     drawHangManHead();
@@ -162,26 +127,21 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
                          gameOver(false);
                      }, 400);
                      break;
-                
             }
             }
         }
     }
 
     function drawHangManHead() {
-   
-    
         board.beginPath();
         board.arc(550, 140, 22, 0, 2*3.14);
         board.fill();
     }
     function drawHangManBody() {
-   
         board.fillStyle = '#0A3871'
         board.fillRect(548, 140, 7 , 110 )
     }
     function drawHangManLftArm(){
-   
         board.fillStyle = '#0A3871'
         board.beginPath()
         board.moveTo(553, 180);
@@ -189,7 +149,6 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.stroke()
     }
     function drawHangManRgtArm(){
-   
         board.fillStyle = '#0A3871'
         board.beginPath()
         board.moveTo(550, 180);
@@ -197,7 +156,6 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.stroke()
     }
     function drawHangManLftLeg(){
-   
         board.fillStyle = '#0A3871'
         board.beginPath()
         board.moveTo(553, 250);
@@ -205,15 +163,12 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.stroke()
     }
     function drawHangManRgtLeg(){
-   
         board.fillStyle = '#0A3871'
         board.beginPath()
         board.moveTo(550, 250);
         board.lineTo(521, 290);
         board.stroke()
     }
-    
-
 
 //Game Functions
     function playGame() {
@@ -233,8 +188,6 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             drawHang() 
             resetBtn.style.display = 'none'
     }
-
-
     function addWordMenu() {
         let addWordsDisplay = document.querySelector('.add-words')
         let menuDisplay = document.querySelector('menu')
@@ -248,7 +201,6 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             addWordsDisplay.style.opacity = '1'
         }, 300)
     }
-
     function addWords() {
         let addWordsInput = document.querySelectorAll('input')
         let addWord = addWordsInput[0]
@@ -256,15 +208,9 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
 
         words.push(addWord.value.toLocaleUpperCase())
         tips.push(addTip.value.toLocaleUpperCase())
-        
-        console.log(addWord.value)
-        console.log(addTip, addWord,words,tips)
+  
     }
-   
-
     function checkLetter(char){
-
-        
         if(secretWord.includes(char)){
             let indexOfChar = []
             let idx = secretWord.indexOf(char)
@@ -281,38 +227,29 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             addWrongLetter(char)
         }
             //Add the correct letters to an array and compare with the array of the original word
-            console.log('check1',check)
             let arrayCheck = check.join('')
-            console.log(arrayCheck)
             if(arrayCheck == secretWord) {
             setTimeout(() => {
-                // alert('Você venceu') 
                 gameOver(true)
             }, 500);
             }
     }
-
     function returnMenu () {
         let addWordsDisplay = document.querySelector('.add-words')
         let menuDisplay = document.querySelector('menu')
-        
-
         addWordsDisplay.style.opacity = 0
         menuDisplay.style.display = 'flex'
-
         setTimeout(()=>{
             addWordsDisplay.style.display = 'none'
             menuDisplay.style.opacity = 1
          }, 300)
    
     }
-
     function gameOver(win) {
         board.clearRect(0, 0, 1200, 700);
         includeLetter = []
         letterSpace = 0
         won = win
-      
         if( win == true){
             addWinMsg()
     
@@ -323,8 +260,6 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         resetBtn.style.display = 'block'
         
     }
-
-    
     function addWinMsg() {
         board.fillStyle = '#0A3871'
         board.font = 'bold 40px Arial'
@@ -337,9 +272,6 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         board.font = 'bold 40px Arial'
         board.fillText(`VOCE PERDEU!` , 450, 350, tip.length * 40)    
     }
-
-
-
     function resetGame() {
        
         board.clearRect(0, 0, 1200, 700);
@@ -347,7 +279,10 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         check = []
         letterSpace = 0
 
-        playGame()
+        setTimeout(() => {
+            playGame()
+        }, 400);
+     
 
     }
   
