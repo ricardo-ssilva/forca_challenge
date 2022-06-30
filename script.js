@@ -187,6 +187,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             addTips()
             drawHang() 
             resetBtn.style.display = 'none'
+        
     }
     function addWordMenu() {
         let addWordsDisplay = document.querySelector('.add-words')
@@ -202,12 +203,15 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
         }, 300)
     }
     function addWords() {
-        let addWordsInput = document.querySelectorAll('input')
-        let addWord = addWordsInput[0]
-        let addTip = addWordsInput[1]
+  
+        let addWord = document.querySelector('.add-wd')
+        let addTip =  document.querySelector('.add-tip')
 
         words.push(addWord.value.toLocaleUpperCase())
         tips.push(addTip.value.toLocaleUpperCase())
+        
+
+        
   
     }
     function checkLetter(char){
@@ -227,9 +231,12 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
             addWrongLetter(char)
         }
             //Add the correct letters to an array and compare with the array of the original word
+
             let arrayCheck = check.join('')
+
             if(arrayCheck == secretWord) {
             setTimeout(() => {
+          
                 gameOver(true)
             }, 500);
             }
