@@ -344,6 +344,7 @@ let check = [] //Add the correct letters to array, to compare with the ramdon wo
        
         board.clearRect(0, 0, 1200, 700);
         includeLetter = []
+        check = []
         letterSpace = 0
 
         playGame()
